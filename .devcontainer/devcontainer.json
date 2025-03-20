@@ -1,18 +1,19 @@
 {
   "name": "saos6-saos10-converter",
-  "image": "mcr.microsoft.com/devcontainers/python:3.8",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "features": {
       "ghcr.io/devcontainers/features/python:1": {
           "version": "3.8"
       }
   },
-  "postCreateCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "",
   "customizations": {
       "vscode": {
           "extensions": [
               "ms-python.python",
               "ms-python.vscode-pylance",
-              "bungcip.better-toml",
               "samuelcolvin.jinjahtml",
               "textfsm.textfsm"
           ]

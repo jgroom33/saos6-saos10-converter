@@ -22,12 +22,12 @@ def process_fsms(config_text):
     result = {}
 
     fsms = [
-        f for f in os.listdir("parser") if os.path.isfile(os.path.join("parser", f))
+        f for f in os.listdir("app/parser") if os.path.isfile(os.path.join("app/parser", f))
     ]
     for fsm in fsms:
         if fsm.endswith(".textfsm"):
             key = fsm.replace(".textfsm", "")
-            result[key] = process_fsm(f"parser/{fsm}", config_text)
+            result[key] = process_fsm(f"app/parser/{fsm}", config_text)
 
     return result
 
@@ -79,7 +79,7 @@ def post_process_fsms(tables):
     Returns:
         dict: A dictionary with post-processed tables.
     """
-    file_loader = FileSystemLoader("parser")
+    file_loader = FileSystemLoader("app/parser")
     env = Environment(loader=file_loader)
     env.filters["hyphen_range_to_list"] = jinja_filters.hyphen_range_to_list
     env.filters["merge_table_by_key"] = jinja_filters.merge_table_by_key
@@ -87,7 +87,7 @@ def post_process_fsms(tables):
 
     result = {}
     for key, value in tables.items():
-        if os.path.isfile(f"parser/{key}.json.j2"):
+        if os.path.isfile(f"app/parser/{key}.json.j2"):
             template = env.get_template(f"{key}.json.j2")
             data = {"data": value}
             parse = template.render(data)
@@ -111,7 +111,7 @@ def convert(tables, converter, options=None):
         dict: A dictionary with converted results.
     """
     result = {}
-    converter_path = f"converter/{converter}"
+    converter_path = f"app/converter/{converter}"
     tables["options"] = options
     parents = next(os.walk(converter_path))[1]
     for parent in parents:
@@ -300,9 +300,9 @@ if __name__ == "__main__":
             for k, v in value[0].items():
                 header.append(k)
             filename_short = filename.replace(".saos", "").replace("configs/", "")
-            os.makedirs(f"tests/output/csv/{filename_short}", exist_ok=True)
+            os.makedirs(f"app/assets/{filename_short}", exist_ok=True)
             with open(
-                f"tests/output/csv/{filename_short}/{key}.csv", "w", newline=""
+                f"app/assets/{filename_short}/{key}.csv", "w", newline=""
             ) as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=header)
                 writer.writeheader()
@@ -311,9 +311,9 @@ if __name__ == "__main__":
                     writer.writerow(x)
         return counter
 
-    files = get_files_by_extension_in_directory("tests/input")
+    files = get_files_by_extension_in_directory("saos6-configs")
     f = open(
-        f"converter/default/options.json",
+        f"app/converter/default/options.json",
     )
     options = json.load(f)
     cmds_total = 0
@@ -321,7 +321,7 @@ if __name__ == "__main__":
     for file in files:
         print("#" * 30)
         print(f"Parsing input {file}")
-        config_text = open(f"tests/input/{file}").read()
+        config_text = open(f"saos6-configs/{file}").read()
         cmds_total = len(
             [ele for ele in config_text.replace(" ", "").split("\n") if ele != ""]
         )  # Num of commands = num of not empty lines
@@ -335,12 +335,15 @@ if __name__ == "__main__":
         saos = json_2_saos(converted)
         # print(f"writing output for {file}")
         filename = file.replace(".saos", "")
+        os.makedirs(f"app/assets/{filename}", exist_ok=True)
         write_file(
             json.dumps(converted, indent=2, sort_keys=True),
-            f"tests/output/configs/{filename}.json",
+            f"app/assets/{filename}/{filename}.json",
         )
-        write_file(xml, f"tests/output/configs/{filename}.xml")
-        write_file(saos, f"tests/output/configs/{filename}_10x.saos")
+        os.makedirs(f"output/xml/", exist_ok=True)
+        os.makedirs(f"output/saos10/", exist_ok=True)
+        write_file(xml, f"output/xml/{filename}.xml")
+        write_file(saos, f"output/saos10/{filename}.saos")
         # print(f"done for {file}")
         print(f"{round((cmds_parsed/cmds_total)*100,2)}% parse rate")
         print(f"{cmds_parsed} commands were recognized out of {cmds_total}")

@@ -1,2 +1,4 @@
 textfsm
 jinja2
+lxml
+json2xml

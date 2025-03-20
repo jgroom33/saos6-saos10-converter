@@ -256,21 +256,35 @@ def json_2_saos(input):
 if __name__ == "__main__":
     # Run local conversion and tests
 
-    def get_files_by_extension_in_directory(directory):
+    parser = argparse.ArgumentParser(description="Process SAOS configurations.")
+    parser.add_argument("--examples", action="store_true", help="Process examples directory")
+    args = parser.parse_args()
+
+    def get_files_by_extension_in_directory(directory, include_examples=False):
         """
-        Get a list of all files in the given directory.
+        Get a list of all files in the given directory, optionally including the examples directory.
 
         Args:
             directory (str): The directory to search for files.
+            include_examples (bool): Whether to include files in the examples directory.
 
         Returns:
             list: A list of file names.
         """
-        return [
+        files = [
             f
             for f in os.listdir(directory)
             if os.path.isfile(os.path.join(directory, f))
         ]
+        if include_examples:
+            examples_dir = os.path.join(directory, "examples")
+            if os.path.exists(examples_dir):
+                files += [
+                    os.path.join("examples", f)
+                    for f in os.listdir(examples_dir)
+                    if os.path.isfile(os.path.join(examples_dir, f))
+                ]
+        return files
 
     def write_file(data, destination):
         """
@@ -280,9 +294,9 @@ if __name__ == "__main__":
             data (str): The data to be written.
             destination (str): The file path where the data will be written.
         """
-        file = open(f"{destination}", "w")
-        file.write(data)
-        file.close()
+        os.makedirs(os.path.dirname(destination), exist_ok=True)
+        with open(destination, "w") as file:
+            file.write(data)
 
     def generate_csv(filename, tables):
         """
@@ -313,7 +327,7 @@ if __name__ == "__main__":
                     writer.writerow(x)
         return counter
 
-    files = get_files_by_extension_in_directory("saos6-configs")
+    files = get_files_by_extension_in_directory("saos6-configs", include_examples=args.examples)
     f = open(
         f"app/converter/default/options.json",
     )

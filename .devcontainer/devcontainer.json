@@ -1,14 +1,12 @@
 {
   "name": "saos6-saos10-converter",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "image": "mcr.microsoft.com/devcontainers/python:3.8",
   "features": {
       "ghcr.io/devcontainers/features/python:1": {
           "version": "3.8"
       }
   },
-  "postCreateCommand": "",
+  "postCreateCommand": "pip install --no-cache-dir -r requirements.txt",
   "customizations": {
       "vscode": {
           "extensions": [

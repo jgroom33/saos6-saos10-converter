@@ -1,0 +1,8 @@
+Value Required name (\S+)
+
+#isis interface enable ip-interface NS3
+
+Start
+  ^isis interface enable ip-interface ${name} -> Record
+
+EOF

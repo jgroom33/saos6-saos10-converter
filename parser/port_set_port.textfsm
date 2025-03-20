@@ -1,0 +1,25 @@
+Value Required port (\S+)
+Value speed (\S+)
+Value auto_neg (\S+)
+Value mode (\S+)
+Value vs_l2_transform (\S+)
+Value vs_ingress_filter (\S+)
+Value max_frame_size (\S+)
+Value description (\".*\"|\S+)
+Value untagged_data_vs (\S+)
+Value untagged_ctrl_vs (\S+)
+Value resolved_cos_map (\S+)
+Value ingress_to_egress_qmap (\S+)
+Value resolved_cos_remark_l2 (\S+)
+Value egress_frame_cos_policy (\S+)
+Value fixed_rcolor (\S+)
+Value fixed_rcos (\S+)
+Value frame_cos_map (\S+)
+
+# port set port 1 speed auto auto-neg on mode rj45
+# port set port 1 max-frame-size 9200 description foo
+
+Start
+  ^port set port ${port}(?=.* speed ${speed})?(?=.* auto-neg ${auto_neg})?(?=.* mode ${mode})?(?=.* vs-l2-transform ${vs_l2_transform})?(?=.* vs-ingress-filter ${vs_ingress_filter})?(?=.* max-frame-size ${max_frame_size})?(?=.* description "${description}")?(?=.* untagged-data-vs ${untagged_data_vs})?(?=.* untagged-ctrl-vs ${untagged_ctrl_vs})?(?=.* resolved-cos-map ${resolved_cos_map})?(?=.* ingress-to-egress-qmap ${ingress_to_egress_qmap})?(?=.* resolved-cos-remark-l2 ${resolved_cos_remark_l2})?(?=.* egress-frame-cos-policy ${egress_frame_cos_policy})?(?=.* fixed-rcolor ${fixed_rcolor})?(?=.* fixed-rcos ${fixed_rcos})?(?=.* frame-cos-map ${frame_cos_map})? -> Record
+
+EOF

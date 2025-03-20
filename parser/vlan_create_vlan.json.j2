@@ -1,0 +1,14 @@
+{# Convert list of comma and hyphen separated vlans into a single array #}
+{%- set vlans = [] %}
+{%- for item in data %}
+  {%- set vlanlist = item.vlan | hyphen_range_to_list %}
+  {%- for i in vlanlist %}
+    {%- set _ = vlans.append(i) %}
+  {%- endfor %}
+{%- endfor %}
+{# Build response #}
+[
+{% for item in vlans %}
+{ "vlan": {{ item }} } {% if not loop.last %},{% endif %}
+{% endfor %}
+]

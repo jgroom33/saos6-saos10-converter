@@ -1,0 +1,6 @@
+bfd profile create profile foo transmit-interval 10msec receive-interval 3.3msec role pasive
+bfd profile create profile bar transmit-interval 10msec receive-interval 10msec role active
+bfd profile create profile foo2 transmit-interval 10msec receive-interval 5msec role pasive
+bfd profile create profile bar2 receive-interval 10msec role active
+bfd profile create profile foo3 transmit-interval 10msec
+bfd profile create profile bar3 transmit-interval 10msec receive-interval 10msec 

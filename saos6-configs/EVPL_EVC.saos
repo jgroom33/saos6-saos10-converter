@@ -1,0 +1,22 @@
+! Service 1
+traffic-profiling set meter-provisioning pirvlan create vlan 1001
+vlan rename vlan 1001 name xVC1001
+vlan add vlan 1001 port 2
+virtual-circuit ethernet create vc xVC1001 vlan 1001
+virtual-switch ethernet create vs xVC1001
+virtual-switch ethernet set vs xVC1001 vc xVC1001
+virtual-circuit ethernet set port 1 vlan-ethertype 8100 vlan-ethertype-policy all
+traffic-profiling set port 1 mode advanced
+traffic-profiling standard-profile create port 1 name xVC1001 cir 40000 cbs 500 pir 40000 ebs 0 statistics on vs xVC1001
+! Service 2
+traffic-profiling set meter-provisioning pir
+vlan rename vlan 1000 name xVC1000
+vlan add vlan 1000 port 2
+virtual-circuit ethernet create vc xVC1000 vlan 1000
+virtual-switch ethernet create vs xVC1000
+virtual-switch ethernet set vs xVC1000 vc xVC1000
+virtual-circuit ethernet set port 1 vlan-ethertype 8100 vlan-ethertype-policy all
+traffic-profiling set port 1 mode advanced
+virtual-switch ethernet add vs xVC1000 port 1 vlan 1 encap-cos-policy port-inherit encap-fixed-dot1dpri 3port set port 1 acceptable-frame-type all
+port set port 1 untagged-data-vs xVC1000 untagged-ctrl-vs xVC1000
+traffic-profiling standard-profile create port 1 name xVC1000 cir 30000 cbs 375 pir 30000 ebs 0 statistics on vs xVC1000

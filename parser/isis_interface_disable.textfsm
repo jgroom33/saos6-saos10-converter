@@ -1,0 +1,8 @@
+Value Required name (\S+)
+
+#isis interface disable ip-interface ISIS1
+
+Start
+  ^isis interface disable ip-interface ${name} -> Record
+
+EOF

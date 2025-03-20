@@ -1,0 +1,22 @@
+Value Required port (\S+)
+Value Required name (\S+)
+Value profile (\S+)
+Value List key (cir|pir|cbs|ebs|dscp|parent|statistics|vlan|child-mode)
+Value List val (\S+)
+
+Start
+  ^traffic-profiling standard-profile create port.* -> Continue.Record
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){1} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){2} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){3} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){4} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){5} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){6} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){7} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){8} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){9} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){10} ${key} ${val} -> Continue
+  ^traffic-profiling standard-profile create port ${port}(?: profile ${profile})? name ${name}(?: \S+ \S+){11} ${key} ${val} -> Continue
+
+EOF

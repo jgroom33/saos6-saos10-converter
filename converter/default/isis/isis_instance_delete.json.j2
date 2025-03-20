@@ -1,0 +1,13 @@
+[
+{% if isis_instance_delete|length > 0 %}
+  {
+    "no instance": [
+  {% for item in isis_instance_delete %}
+    {
+      "name": "{{ item.name }}"
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

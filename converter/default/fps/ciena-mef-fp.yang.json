@@ -1,0 +1,89 @@
+{
+  "ciena-mef-fp:fps": {
+    "fp": [
+      {
+        "name": "",
+        "description": "",
+        "fd-name": "",
+        "logical-port": "",
+        "svlan": "",
+        "mpls-pw": "",
+        "uni": "",
+        "other": "",
+        "mtu-size": "2000",
+        "admin-state": "",
+        "ingress-l2-transform": [
+          {
+            "ingress-name": "",
+            "vlan-stack": [
+              {
+                "tag": "",
+                "push-tpid": "tpid-8100",
+                "push-pcp": "",
+                "push-dei": "",
+                "push-vid": "",
+                "pop-type": "",
+                "stamp-tpid": "",
+                "stamp-pcp": "",
+                "stamp-dei": "",
+                "no-op": "",
+                "stamp-vid-value": ""
+              }
+            ],
+            "untagged-tpid": "",
+            "untagged-pcp": "",
+            "untagged-dei": "",
+            "untagged-vid": ""
+          }
+        ],
+        "egress-l2-transform": [
+          {
+            "egress-name": "",
+            "vlan-stack": [
+              {
+                "tag": "",
+                "push-tpid": "tpid-8100",
+                "push-pcp": "",
+                "push-dei": "",
+                "push-vid": "",
+                "pop-type": "",
+                "stamp-tpid": "",
+                "stamp-pcp": "",
+                "stamp-dei": "",
+                "no-op": "",
+                "stamp-vid-value": ""
+              }
+            ],
+            "untagged-tpid": "",
+            "untagged-pcp": "",
+            "untagged-dei": "",
+            "untagged-vid": ""
+          }
+        ],
+        "ingress-l3-mapped": "",
+        "ingress-remark-dscp-value": "",
+        "egress-l3-mapped": "",
+        "egress-remark-dscp-value": "",
+        "map-policy": "",
+        "frame-to-cos-map": "",
+        "cos": "",
+        "color": "",
+        "cos-to-frame-map": "",
+        "flood-containment-profile": "",
+        "classifier-list": ["[", "]"],
+        "classifier-list-precedence": "",
+        "mac-learning": "",
+        "meter-profile": "",
+        "pfg-group": "",
+        "queue-group-instance": "",
+        "stats-collection": "",
+        "normalized-vid": [
+          {
+            "tag": "",
+            "vlan-id": ""
+          }
+        ]
+      }
+    ]
+  }
+}

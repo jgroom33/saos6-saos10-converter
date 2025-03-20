@@ -1,0 +1,19 @@
+
+traffic-profiling set meter-provisioning pir
+vlan create vlan 1000
+vlan rename vlan 1000 name xVC1000
+vlan add vlan 1000 port 2
+virtual-circuit ethernet create vc xVC1000 vlan 1000
+virtual-switch ethernet create vs xVC1000
+virtual-switch ethernet set vs xVC1000 vc xVC1000
+virtual-circuit ethernet set port 1 vlan-ethertype 8100 vlan-ethertype-policy all
+traffic-profiling set port 1 mode advanced
+virtual-switch l2-cft enable vs xVC1000
+port set port 1 acceptable-frame-type all
+virtual-switch ethernet add vs xVC1000 port 1 
+port set port 1 untagged-data-vs xVC1000 untagged-ctrl-vs xVC1000
+virtual-switch ethernet set port 1 vs xVC1000 encap-cos-policy fixed encap-fixed-dot1dpri 3
+virtual-switch ethernet set vs xVC1000 encap-cos-policy fixed encap-fixed-dot1dpri 3
+virtual-switch l2-cft set vs xVC1000 priority 3
+l2-cft set port 1 profile EPL1-L
+traffic-profiling standard-profile create port 1 name xVC1000 cir 30000 cbs 375 pir 30000 ebs 0 statistics on vs xVC1000

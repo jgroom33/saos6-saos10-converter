@@ -1,0 +1,12 @@
+Value Required name (\S+)
+Value bfd_monitor (\S+)
+Value padded_hello (\S+)
+Value level (\S+)
+Value network_type (\S+)
+
+#isis interface set ip-interface NS4 level L1-L2
+
+Start
+  ^isis interface set ip-interface ${name}(?=.* level ${level})?(?=.* bfd-monitor ${bfd_monitor})?(?=.* padded-hello ${padded_hello})?(?=.* network-type ${network_type})? -> Record
+
+EOF

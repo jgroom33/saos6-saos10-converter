@@ -1,0 +1,51 @@
+[
+  {% if options.generate_maps == true %}
+  {%- for map in range(0,57,8) %}
+  {
+    "frame-to-cos-map": {
+      "name": "fixed_{{ map }}",
+      "xml_container": [
+      {% for pcp in range(0,8) %}
+        { "map-entry":
+          {
+            "name": "pcp{{ pcp }}-dei0",
+            "pcp": "{{ pcp }}",
+            "dei": "disabled",
+            "cos": "{{ map }}",
+            "color": "green"
+          }
+        }, { 
+          "map-entry": {
+            "name": "pcp{{ pcp }}-dei1",
+            "pcp": "{{ pcp }}",
+            "dei": "enabled",
+            "cos": "{{ map }}",
+            "color": "green"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  }{%- if not loop.last %},{% endif %}
+  {% endfor %}
+  {% endif %}
+]
+
+{# 
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp0-dei0  pcp 0 dei disabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp1-dei0  pcp 1 dei disabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp2-dei0  pcp 2 dei disabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp3-dei0  pcp 3 dei disabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp4-dei0  pcp 4 dei disabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp5-dei0  pcp 5 dei disabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp6-dei0  pcp 6 dei disabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp7-dei0  pcp 7 dei disabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp0-dei1  pcp 0 dei enabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp1-dei1  pcp 1 dei enabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp2-dei1  pcp 2 dei enabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp3-dei1  pcp 3 dei enabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp4-dei1  pcp 4 dei enabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp5-dei1  pcp 5 dei enabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp6-dei1  pcp 6 dei enabled cos 56 color green
+frame-to-cos-maps frame-to-cos-map fixed_56 map-entry  pcp7-dei1  pcp 7 dei enabled cos 56 color green #}
+

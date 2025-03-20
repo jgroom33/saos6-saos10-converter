@@ -1,0 +1,8 @@
+Value vlan (\S+)
+Value ip (\S+)
+Value cidr (\S+)
+
+Start
+  ^interface remote set(?=.*vlan ${vlan})?(?=.*ip ${ip}\/${cidr})? -> Record
+
+EOF

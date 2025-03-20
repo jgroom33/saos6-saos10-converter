@@ -1,0 +1,19 @@
+Value Required name (\S+)
+Value bfd_monitor (\S+)
+Value hello_interval (\S+)
+Value priority (\S+)
+Value transmit_delay (\S+)
+Value retransmit_delay (\S+)
+Value cost_metric (\S+)
+Value delay_interval (\S+)
+Value passive (\S+)
+
+
+#ospf interface unset ip-interface NS4 priority 1
+
+Start
+  ^ospf interface unset ip-interface ${name}(?=.* priority ${priority})?(?=.* bfd-monitor ${bfd_monitor})?(?=.* hello-interval ${hello_interval})?(?=.* transmit-delay ${transmit_delay})?(?=.* retransmit-delay ${retransmit_delay})?(?=.* cost-metric ${cost_metric})?(?=.* delay-interval ${delay_interval})?(?=.* passive ${passive})? -> Record
+
+EOF
+
+

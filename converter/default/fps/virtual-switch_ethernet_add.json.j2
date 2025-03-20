@@ -1,0 +1,71 @@
+[
+{% set vs_vlans = {} %}
+{% set meter_profile = {"name": "NOT_SET_INITIAL"} %}
+{%- for vs in virtual_switch_ethernet_add %}
+  {% set vs_name = vs.vs %}
+  {% set _ = vs_vlans.__setitem__(vs_name + ':/:/' + vs.port, []) %}
+{% endfor %}
+{%- for vs in virtual_switch_ethernet_add %}
+  {% set vs_name = vs.vs %}
+  {% set _ = vs_vlans[vs_name + ':/:/' + vs.port].append(vs.vlan) %}
+{% endfor %}
+{% for key, value in vs_vlans.items() %}
+  {% set vs = key.split(':/:/')[0] %}
+  {% set port = key.split(':/:/')[1] %}
+  {
+    "fp": {
+      "name": "FP_UNI_{{ vs }}_{{ port }}",
+      "fd-name": "FD_{{ vs }}",
+      "logical-port": "{{ port }}",
+      "classifier-list": [
+        {% for vlan in value %}
+          {% if vlan != "" %}
+        "CLASSIFIER_UNI_{{ vs }}-{{ vlan }}"{%- if not loop.last %},{% endif %}
+          {% else %}
+        "CLASSIFIER_UNI_{{ vs }}-ALL_VIDS",
+        "CLASSIFIER_UNI_{{ vs }}-UNTAGGED"
+          {% endif %}
+        {% endfor %}
+      ],
+      {% for profile in standard_profile_create_port %}
+        {% if profile.port == port %}
+          {% if profile.vs != "" %}
+            {% if profile["child-mode"] != "" %}
+              {% set _ = meter_profile.update({"name": profile.vs}) %}
+            {% endif %}
+          {% else %}
+            {% if profile["parent"] == "" %}
+              {% set _ = meter_profile.update({"name": profile.name}) %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      "meter-profile": "{{ port }}_{{ meter_profile.name }}"
+      {% set _ = meter_profile.update({"name": "TP_NOT_SET_ON_VS"}) %}
+      {# ,
+      "egress-l2-transform": [
+        {
+          "egress-name": "push_{{ vs.vlan }}",
+          "vlan-stack": [
+            {
+              "tag": "1",
+              "push-vid": "{{ vs.vlan }}"
+            }
+          ]
+        }
+      ],
+      "ingress-l2-transform": [
+        {
+          "ingress-name": "pop_{{ vlan }}",
+          "vlan-stack": [
+            {
+              "tag": "1",
+              "pop-type": ""
+            }
+          ]
+        }
+      ] #}
+    }
+  }{%- if not loop.last %},{% endif %}
+{%- endfor %}
+]

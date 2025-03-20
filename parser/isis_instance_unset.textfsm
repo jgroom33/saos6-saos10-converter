@@ -1,0 +1,16 @@
+Value Required name (\S+)
+Value redistribute (\S+)
+Value route_leak (\S+)
+Value ignore_attach_bit (\S+)
+Value send_attach_bit (\S+)
+Value uloop_prevention_timer (\S+)
+Value level (\S+)
+Value authentication_algo (\S+)
+
+
+#isis instance unset isis-instance ISIS1 redistribute static metric-type L1-int
+
+Start
+  ^isis instance unset isis-instance ${name}(?=.* redistribute ${redistribute})?(?=.* route-leak ${route_leak})?(?=.* ignore-attach-bit ${ignore_attach_bit})?(?=.* send-attach-bit ${send_attach_bit})?(?=.* uloop-prevention-timer ${uloop_prevention_timer})?(?=.* level ${level})?(?=.* authentication-algo ${authentication_algo})? -> Record
+
+EOF

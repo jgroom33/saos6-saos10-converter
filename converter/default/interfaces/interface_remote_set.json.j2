@@ -1,0 +1,35 @@
+[
+{% for item in interface_remote_set %}
+    {
+        "name": "remote",
+        "admin-status": "true",
+        "ipv4": {
+            "addresses": [
+                {
+                    "ip": "{{ item.ip }}"
+                }
+            ]
+        }
+    }
+{% endfor %}
+]
+
+{# 
+<interface>
+    <name>remote</name>
+    <config>
+        <admin-status xmlns="http://ciena.com/ns/yang/ciena-openconfig-interfaces">true</admin-status>
+    </config>
+    <ipv4 xmlns="http://ciena.com/ns/yang/ciena-openconfig-if-ip">
+        <addresses>
+            <address>
+                <ip>{{ data.IPV4 }}</ip>
+                <config>
+                    <ip>{{ data.IPV4 }}</ip>
+                    <prefix-length>{{ data.CIDR }}</prefix-length>
+                </config>
+            </address>
+        </addresses>
+    </ipv4>
+</interface> 
+#}

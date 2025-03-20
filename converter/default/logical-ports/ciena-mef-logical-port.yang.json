@@ -1,0 +1,31 @@
+{
+  "ciena-mef-logical-port:logical-ports": {
+    "logical-port": [
+      {
+        "name": "",
+        "admin-state": "enable",
+        "binding": "",
+        "mtu": "1526",
+        "meter-profile": "",
+        "frame-to-cos-map-policy": "",
+        "frame-to-cos-map": "",
+        "fixed-cos": "",
+        "fixed-color": "",
+        "cos-to-frame-map": "",
+        "flood-containment-profile": "",
+        "description": "",
+        "outer-tpid": ["[", "]"],
+        "inner-tpid": ["[", "]"],
+        "egress-qos": "",
+        "cfm-up-mep-frame-rx": "always-on",
+        "pfg-profile": "",
+        "pfg-group": "",
+        "broadcast-pfg-group": "",
+        "unknown-unicast-pfg-group": "",
+        "unknown-multicast-pfg-group": "",
+        "known-multicast-pfg-group": "",
+        "known-unicast-pfg-group": ""
+      }
+    ]
+  }
+}

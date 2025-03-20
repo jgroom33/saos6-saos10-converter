@@ -1,0 +1,35 @@
+[
+{% if isis_interface_unset|length > 0 %}
+  {
+    "instance": [
+  {% for item in isis_interface_unset %}
+    {
+      "name": "<INPUT-INSTANCE-NAME>",
+      "interfaces": {
+          "interface":{
+
+                {% if item.bfd_monitor != "" %}
+                "no bfd":"enable",
+                {% endif %}
+
+                {% if item.level != "" %}
+                "no level-type":"",
+                {% endif %}
+
+                {% if item.network_type != "" %}
+                "no interface-type":"",
+                {% endif %}
+
+                {% if item.padded_hello != "" %}
+                "no hello-padding":"",
+                {% endif %}
+
+                "name":"{{ item.name }}"
+                }}
+
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

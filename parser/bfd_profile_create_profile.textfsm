@@ -1,0 +1,13 @@
+Value Required name (\S+)
+Value transmit_interval (\S+)
+Value receive_interval (\S+)
+Value role (\S+)
+Value lsp_gachtype (\S+)
+
+#
+#bfd profile create profile 10msActive transmit-interval 10msec receive-interval 10msec
+
+Start
+  ^bfd profile create profile ${name}(?=.* transmit-interval ${transmit_interval}msec)?(?=.* receive-interval ${receive_interval}msec)?(?=.* lsp-gachtype ${lsp_gachtype})?(?=.* role ${role})? -> Record
+
+EOF

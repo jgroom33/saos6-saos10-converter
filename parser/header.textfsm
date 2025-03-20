@@ -1,0 +1,26 @@
+Value platform (\S+)
+Value chassis_mac ((?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2})
+Value created (.+)
+Value created_by (.+)
+Value sw_package (.+)
+Value build_number (.+)
+Value mib_number (.+)
+
+# ! 3916 Configuration File
+# ! Chassis MAC:   00:03:18:ad:e6:10
+# ! Created:       Wed Jun 15 22:21:04 2011
+# ! Created by:    CLI
+# ! SW Package:    Slot 1 - saos-06-08-00-0181
+# ! Build Number:  7020
+# ! MIB Number:    04-08-00-0036
+
+Start
+  ^! ${platform} Configuration File
+  ^! Chassis MAC: +${chassis_mac}
+  ^! Created: +${created}
+  ^! Created by: +${created_by}
+  ^! SW Package: +${sw_package}
+  ^! Build Number: +${build_number}
+  ^! MIB Number: +${mib_number} -> Record
+
+EOF

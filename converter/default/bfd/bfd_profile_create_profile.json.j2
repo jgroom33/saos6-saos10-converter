@@ -1,0 +1,22 @@
+[
+{% if bfd_profile_create_profile|length > 0 %}
+  {
+    "profiles": [
+  {% for item in bfd_profile_create_profile %}
+    {
+      "ip-bfd-profile": {
+        {% if item.transmit_interval != "" %}
+          "desired-min-tx-interval": "{{ ((item.transmit_interval|float)*1000)|int }}",
+        {% endif %}
+        {% if item.receive_interval != "" %}
+          "required-min-rx-interval": "{{ ((item.receive_interval|float)*1000)|int }}",
+        {% endif %}
+        "name": "{{ item.name }}"
+      }
+
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

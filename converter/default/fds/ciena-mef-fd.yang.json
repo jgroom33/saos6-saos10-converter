@@ -1,0 +1,34 @@
+{
+  "ciena-mef-fd:fds": {
+    "fd": [
+      {
+        "name": "",
+        "description": "",
+        "mode": "",
+        "vlan-id": "",
+        "mac-learning": "",
+        "l2cp-profile": "",
+        "flood-containment-profile": "",
+        "pfg-profile": "",
+        "cos-queue-map": "",
+        "queue-group-indirection": "",
+        "initiate-l2-transform": {
+          "vlan-stack": [
+            {
+              "tag": "",
+              "push-tpid": "tpid-8100",
+              "push-pcp": "",
+              "push-dei": "",
+              "push-vid": ""
+            }
+          ]
+        },
+        "initiate-cos-to-frame-map": "",
+        "initiate-frame-to-cos-map-policy": "",
+        "initiate-frame-to-cos-map": "",
+        "cos": "",
+        "color": ""
+      }
+    ]
+  }
+}

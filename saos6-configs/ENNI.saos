@@ -1,0 +1,8 @@
+traffic-profiling set meter-provisioning pir
+vlan rename vlan 1000 name xVC1000
+vlan add vlan 1000 port 2
+vlan create vlan 1000
+vlan rename vlan 1000 name xVC1000
+vlan add vlan 1000 port 1
+traffic-profiling standard-profile create port 1 name xVC1000 cir 30000 cbs 375 pir 30000 ebs 0 statistics on vlan 1000port set port 1 egress-frame-cos-policy rcos-to-l2-outer-pcp-map frame-cos-map MEFwkr resolved-cos-remark-l2 true
+

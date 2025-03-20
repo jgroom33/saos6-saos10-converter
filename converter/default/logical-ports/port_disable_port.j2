@@ -1,0 +1,10 @@
+[
+{% for item in port_disable_port %}
+{
+  "logical-port": {
+    "name": "{{ item.port }}",
+    "admin-state": "disable"
+  }
+}{% if not loop.last %},{% endif %}
+{% endfor %}
+]

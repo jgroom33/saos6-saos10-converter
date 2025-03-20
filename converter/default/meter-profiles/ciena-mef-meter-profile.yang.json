@@ -1,0 +1,18 @@
+{
+    "ciena-mef-meter-profile:meter-profiles": {
+        "meter-profile": [
+            {
+                "name": "",
+                "description": "",
+                "cir": "",
+                "eir": "",
+                "cbs": "",
+                "ebs": "",
+                "color-aware": "",
+                "coupling-flag": "",
+                "shared-meter-instance": "",
+                "valid-interface-type": ""
+            }
+        ]
+    }
+}

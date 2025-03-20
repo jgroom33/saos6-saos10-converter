@@ -1,0 +1,14 @@
+isis instance disable isis-instance ISIS1
+isis instance delete isis-instance ISIS2
+isis instance create isis-instance ISIS3 level L1-L2 area 49.0000
+isis instance add isis-instance ISIS4 area 49.0000
+isis interface unset ip-interface NS4 level L1-L2
+isis interface set ip-interface NS2 level L1-L2
+isis interface enable ip-interface NS3
+isis interface disable ip-interface ISIS15
+isis interface detach ip-interface NS6
+isis interface attach ip-interface NS7 isis-instance ISIS23 level L1-L2
+isis instance unset isis-instance ISIS13 redistribute static metric-type L1-int
+isis instance set isis-instance ISIS14 redistribute static metric-type L1-int
+isis instance remove isis-instance ISIS15 area 49.0000
+isis instance enable isis-instance ISIS16

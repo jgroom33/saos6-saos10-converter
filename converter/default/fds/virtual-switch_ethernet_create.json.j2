@@ -1,0 +1,11 @@
+[
+{% for item in virtual_switch_ethernet_create %}
+  {
+    "fd": {
+      "name": "FD_{{ item.vs }}",
+      "description" : "{{ item.description |replace("\"", "") }}",
+      "mode": "{{ options.fd_mode }}"
+    }
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]

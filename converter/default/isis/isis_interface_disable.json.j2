@@ -1,0 +1,16 @@
+[
+{% if isis_interface_create|length > 0 %}
+  {
+    "instance": [
+  {% for item in isis_interface_create %}
+    {
+      "name": "<INPUT-INSTANCE-NAME>"
+      "no interfaces": {
+          "interface":"{{ item.name }}"
+      }
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

@@ -1,0 +1,8 @@
+Value Required name (\S+)
+
+#ospf instance enable ospf-instance foo
+
+Start
+  ^#ospf instance enable ospf-instance ${name}-> Record
+
+EOF

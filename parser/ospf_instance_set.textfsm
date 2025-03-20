@@ -1,0 +1,12 @@
+Value Required name (\S+)
+Value rfc_comp (\S+)
+Value router_id (\S+)
+Value spf_delay_interval (\S+)
+
+#ospf instance set ospf-instance foo rfc-1583-compatible on router-id bar spf-delay-interval 10000
+
+Start
+  ^ospf instance set ospf-instance ${name}(?=.* rfc-1583-compatible ${rfc_comp})?(?=.* router-id ${router_id})?(?=.* spf-delay-interval ${spf_delay_interval})? -> Record
+
+EOF
+

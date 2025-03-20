@@ -1,0 +1,39 @@
+Value Required port (\S+)
+Value Required name (\S+)
+Value profile (\S+)
+Value cir (\d+)
+Value pir (\d+)
+Value cbs (\d+)
+Value ebs (\d+)
+Value statistics (\S+)
+Value vlan (\d+)
+Value vs (\S+)
+Value dot1dpri (\S+)
+Value parent (\S+)
+Value childMode (\S+)
+Value defaultProfile (\S+)
+Value drop (\S+)
+Value untagged ( untagged)
+Value eir (\d+)
+Value dscp (\S+)
+
+# config6x.saos
+# traffic-profiling standard-profile create port 1 profile 1 name TP-20 cir 6144 eir 512 cbs 29952 ebs 14976 untagged
+# traffic-profiling standard-profile create port 2 profile 1 name TP-20 cir 6144 eir 512 cbs 29952 ebs 14976 untagged
+# traffic-profiling standard-profile create port 3 profile 1 name TP-20 cir 6144 eir 512 cbs 29952 ebs 14976 untagged
+# traffic-profiling standard-profile create port 4 profile 1 name TP-20 cir 6144 eir 512 cbs 29952 ebs 14976 untagged
+# config3916.saos
+# traffic-profiling standard-profile create port 2 profile 1 name EVC1_flow cir 15040 pir 15040 cbs 128 ebs 128 statistics off vlan 10 child-mode standard-dot1dpri
+# traffic-profiling standard-profile create port 3 profile 1 name EVC3 cir 30016 pir 30016 cbs 128 ebs 128 statistics off child-mode standard-dscp
+# traffic-profiling standard-profile create port 2 profile 2 name EVC1-GD_flow cir 7552 pir 15040 cbs 128 ebs 128 dot1dpri 1,2,3 parent EVC1_flow
+# traffic-profiling standard-profile create port 2 profile 3 name EVC1-All_flow cir 0 pir 15040 cbs 128 ebs 128 dot1dpri 0,4,5,6,7 parent EVC1_flow
+# traffic-profiling standard-profile create port 3 profile 2 name EVC3-RT cir 10048 pir 10048 cbs 128 ebs 128 dscp 32,36,38,40,42,44,46,48,50,52,54,56,58,60,62 parent EVC3
+# traffic-profiling standard-profile create port 3 profile 3 name EVC3-GD cir 10048 pir 30016 cbs 128 ebs 128 dscp 0,4,6,8,10,12,14,16,18,20,22,24,26,28,30 parent EVC3
+
+# regex101.com:
+# (?:traffic-profiling standard-profile create port )(\S+)(?: profile \S+)? name (\S+)(?=.* cir (\S+))?(?=.* pir (\S+))?(?=.* cbs (\S+))?(?=.* ebs (\S+))?
+
+Start
+  ^.*standard-profile create port ${port}(?: profile ${profile})? name ${name}(?=.* cir ${cir})?(?=.* pir ${pir})?(?=.* eir ${eir})?(?=.* cbs ${cbs})?(?=.* ebs ${ebs})?(?=.* vlan ${vlan})?(?=.* dot1dpri ${dot1dpri})?(?=.* dscp ${dscp})?(?=.* child-mode ${childMode})?(?=.* default-profile ${defaultProfile})?(?=.* drop ${drop})?${untagged}?(?=.* statistics ${statistics})?(?=.* parent ${parent})?(?=.* vs ${vs})? -> Record
+
+EOF

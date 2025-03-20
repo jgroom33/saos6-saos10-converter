@@ -1,0 +1,20 @@
+
+[
+{% if isis_instance_add|length > 0 %}
+  {
+    "instance": [
+  {% for item in isis_instance_add %}
+    {
+      {% if item.level != "" %}
+        "level-type" : "{{item.level}}",
+      {% endif %}
+      {% if item.area != "" %}
+        "net" : "{{item.area}}.0000.0000.0000.00",
+      {% endif %}
+        "name": "{{ item.name }}"
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

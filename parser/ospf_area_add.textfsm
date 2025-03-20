@@ -1,0 +1,11 @@
+Value Required area_ip (\S+)
+Value ospf_instance (\S+)
+Value prefix_filter (\S+)
+Value range (\S+)
+
+#ospf area add area-ip <ip> ospf-instance foo prefix-filter <filter> range <x.x.x.x>
+
+Start
+  ^#ospf area add area-ip ${area_ip}(?=.* ospf-instance ${ospf_instance})?(?=.* prefix-filter ${prefix_filter})?(?=.* range ${range})?-> Record
+
+EOF

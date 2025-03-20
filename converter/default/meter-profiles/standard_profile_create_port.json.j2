@@ -1,0 +1,20 @@
+[
+{% for item in standard_profile_create_port %}
+{
+  "meter-profile": {
+    {% if item.vs == "" %}
+    "name": "{{ item.port }}_{{ item.name }}",
+    {% else %}
+    "name": "{{ item.port }}_{{ item.vs }}",
+    {% endif %}
+    "cir": "{% if item.cir == '' %}0{% else %}{{ item.cir }}{% endif %}",
+    "eir": "{% if item.eir == '' %}0{% else %}{{ item.eir }}{% endif %}",
+    "cbs": "{% if item.cbs == '' %}0{% else %}{{ item.cbs }}{% endif %}",
+    "ebs": "{% if item.ebs == '' %}0{% else %}{{ item.ebs }}{% endif %}",
+    "shared-meter-instance": "false",
+    "coupling-flag": "false",
+    "color-aware": "false"
+  }
+}{% if not loop.last %},{% endif %}
+{% endfor %}
+]

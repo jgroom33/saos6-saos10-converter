@@ -1,0 +1,11 @@
+Value Required area_ip (\S+)
+Value ospf_instance (\S+)
+Value type (\S+)
+
+
+#ospf area create area-ip <ip> ospf-instance foo type normal
+
+Start
+  ^#ospf area create area-ip ${area_ip}(?=.* ospf-instance ${ospf_instance})?(?=.* type ${type})?-> Record
+
+EOF

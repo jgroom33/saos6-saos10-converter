@@ -1,0 +1,8 @@
+Value Required port (\S+)
+
+# rstp enable port 1
+
+Start
+  ^rstp enable port ${port} -> Record
+
+EOF

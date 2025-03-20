@@ -1,0 +1,8 @@
+Value Required name (\S+)
+
+#ospf interface enable ip-interface NS3
+
+Start
+  ^ospf interface enable ip-interface ${name} -> Record
+
+EOF

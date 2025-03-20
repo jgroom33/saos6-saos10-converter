@@ -1,0 +1,9 @@
+Value Required area_ip (\S+)
+Value ospf_instance (\S+)
+
+#ospf area delete area-ip <ip> ospf-instance foo
+
+Start
+  ^#ospf area delete area-ip ${area_ip}(?=.* ospf-instance ${ospf_instance})?-> Record
+
+EOF

@@ -1,0 +1,16 @@
+[
+{% if isis_instance_enable|length > 0 %}
+  {
+    "instance": [
+  {% for item in isis_instance_enable %}
+    {
+      "name": "<INPUT-INSTANCE-NAME>",
+      "interfaces": {
+          "interface":"{{ item.name }}"
+      }
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

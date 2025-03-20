@@ -1,0 +1,2 @@
+{# This uses a custom filter to flatten all "interface remote set" rows into a single entry #}
+{{ data | table_flatten | tojson }}

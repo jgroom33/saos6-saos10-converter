@@ -1,0 +1,13 @@
+[
+{% if bfd_profile_delete_profile|length > 0 %}
+  {
+    "no profiles": [
+  {% for item in bfd_profile_delete_profile %}
+    {
+      "name": "{{ item.name }}"
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

@@ -1,0 +1,18 @@
+[
+{% if ip_route_add|length > 0 %}
+  {
+    "rib": [
+  {% for item in ip_route_add %}
+    {
+        "vrf":"default",
+        {% if item.gateway != "" %}
+        "next-hop": "{{ item.gateway }}",
+        {% endif %}
+        "ipv4": "{{item.destination}}"
+
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

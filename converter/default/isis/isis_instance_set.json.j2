@@ -1,0 +1,25 @@
+[
+{% if isis_instance_set|length > 0 %}
+  {
+    "instance": [
+  {% for item in isis_instance_set %}
+    {   
+        {% if item.redistribute != "" %}
+        "proto-ipv4":{ 
+                "redistribute": {
+                        "protocol":"{{item.redistribute}}"}},{% endif %}
+        {% if item.level == "L1" %}
+        "level-type":"level-1",
+        {% elif item.level == "L2" %}
+        "level-type": "level-2",
+        {% elif item.level == "L1-L2" %}
+        "level-type":"level-1-2",
+        {% endif %}
+        "name": "{{ item.name }}"
+      
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

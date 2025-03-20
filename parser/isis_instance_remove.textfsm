@@ -1,0 +1,16 @@
+Value Required name (\S+)
+Value area (\S+)
+Value summary_route (\S+)
+Value ip_sum (\S+)
+Value route_leak (\S+)
+Value ip_leak (\S+)
+
+
+
+
+#isis instance remove isis-instance ISIS1 area 49.0000
+
+Start
+  ^isis instance remove isis-instance ${name}(?=.* area ${area})?(?=.* summary-route ${summary_route}(?=.* ip ${ip_sum})?)?(?=.* route-leak ${route_leak}(?=.* ip ${ip_leak})?)?-> Record
+
+EOF

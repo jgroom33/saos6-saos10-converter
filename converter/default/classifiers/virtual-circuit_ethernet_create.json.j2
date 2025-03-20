@@ -1,0 +1,26 @@
+{%- set local = {} %}
+[
+{% for vc in virtual_circuit_ethernet_create_vc %}
+  {% for vs in virtual_switch_ethernet_create %}
+    {% if vs.vc == vc.vc %}
+      {% set _ = local.update({"vs":vs.vs}) %}
+    {% endif %}
+  {% endfor %}
+  {
+    "classifier": {
+      "name": "CLASSIFIER_NNI_{{ local.vs }}",
+      "filter-entry": [
+        {
+          "filter-parameter": "vtag-stack",
+          "vtags": [
+            {
+              "tag": "1",
+              "vlan-id": "{{ vc.vlan }}"
+            }
+          ]
+        }
+      ]
+    }
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]

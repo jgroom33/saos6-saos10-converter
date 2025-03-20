@@ -1,0 +1,10 @@
+Value Required name (\S+)
+Value isis_instance (\S+)
+Value level (\S+)
+
+#isis interface attach ip-interface NS4 isis-instance ISIS2 level L1-L2
+
+Start
+  ^isis interface attach ip-interface ${name}(?=.* level ${level})?(?=.* isis-instance ${isis_instance})? -> Record
+
+EOF

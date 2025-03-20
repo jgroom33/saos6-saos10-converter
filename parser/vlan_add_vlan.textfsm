@@ -1,0 +1,14 @@
+Value Required vlan (\S+)
+Value port (\S+)
+
+# vlan add vlan 85,127 port 1
+# vlan add vlan 3000 port 1
+# vlan remove vlan 127 port 4
+# vlan add vlan 3000 port 5
+# vlan add vlan 85,3000-3002 port 6
+# vlan add vlan 85,3000 port TestAgg
+
+Start
+  ^vlan add vlan ${vlan} port ${port} -> Record
+
+EOF

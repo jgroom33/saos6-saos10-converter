@@ -1,0 +1,43 @@
+[
+{% if isis_interface_set|length > 0 %}
+  {
+    "instance": [
+  {% for item in isis_interface_set %}
+    {
+      "name": "<INPUT-INSTANCE-NAME>",
+      "interfaces": {
+          "interface":{
+
+                {% if item.bfd_monitor == "enable" %}
+                "bfd":{"enable":"true"},
+                {% elif item.bfd_monitor == "disable" %}
+                "bfd" :{"enable":"false"},
+                {% endif %}
+
+                {% if item.level == "L1" %}
+                "level-type":"level-1",
+                {% elif item.level == "L2" %}
+                "level-type":"level-2",
+                {% elif item.level == "L1-L2" %}
+                "level-type":"level-1-2",
+                {% endif %}
+
+                {% if item.network_type != "" %}
+                "interface-type":"{{item.network_type}}",
+                {% endif %}
+
+                {% if item.padded_hello == "yes" %}
+                "hello-padding":"true",
+                {% elif item.padded_hello == "no" %}
+                "hello-padding":"false",
+                {% endif %}
+
+                "name":"{{ item.name }}"
+                }}
+
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

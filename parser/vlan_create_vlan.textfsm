@@ -1,0 +1,6 @@
+Value Required vlan (\S+)
+
+Start
+  ^vlan create vlan ${vlan} -> Record
+
+EOF

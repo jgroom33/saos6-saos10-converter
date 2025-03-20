@@ -1,0 +1,11 @@
+Value Required name (\S+)
+Value level (\S+)
+Value area (\S+)
+
+
+#isis instance create isis-instance ISIS1 level L1-L2 area 49.0000
+
+Start
+  ^isis instance create isis-instance ${name}(?=.* level ${level})?(?=.* area ${area})? -> Record
+
+EOF

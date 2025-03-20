@@ -1,0 +1,64 @@
+{
+  "ciena-mef-classifier:classifiers": {
+    "classifier": [
+      {
+        "name": "",
+        "filter-operation": "",
+        "filter-entry": [
+          {
+            "filter-parameter": "",
+            "logical-not": "False",
+            "untagged-exclude-priority-tagged": "",
+            "l2cp-exclude-priority-tagged": "",
+            "vtags": [
+              {
+                "tag": "",
+                "tpid": "",
+                "pcp": "",
+                "pcp-mask": "",
+                "dei": "",
+                "vlan-id": "",
+                "vlan-id-max": ""
+              }
+            ],
+            "mpls-labels": [
+              {
+                "label": "",
+                "label-any": "",
+                "mpls-label": "",
+                "tc-any": "",
+                "tc-value": ""
+              }
+            ],
+            "dscp-min": "",
+            "dscp-max": "",
+            "dscp-mask": "",
+            "source-address": "",
+            "destination-address": "",
+            "source-min": "",
+            "source-max": "",
+            "destination-min": "",
+            "destination-max": "",
+            "min-prot": "",
+            "max-prot": "",
+            "base-ethertype": "",
+            "any": "",
+            "ip-fragment": "",
+            "l4-application": "",
+            "tcp-flags": "",
+            "source-mac": "",
+            "source-mac-mask": "",
+            "destination-mac": "",
+            "destination-mac-mask": "",
+            "local-termination": "",
+            "icmp-type": "",
+            "icmp-message-type": "",
+            "ip-version": "",
+            "internal-cos": "",
+            "internal-cos-mask": ""
+          }
+        ]
+      }
+    ]
+  }
+}

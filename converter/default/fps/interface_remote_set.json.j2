@@ -1,0 +1,19 @@
+[
+{
+  "fp": {
+    "name": "remote",
+    "fd-name": "remote",
+    "logical-port": "remote"
+  }
+}
+]
+{# 
+    <fp>
+        <name>FP{{ port.PORT }}-MGMT</name>
+        <fd-name>remote-fd</fd-name>
+        <logical-port>{{ port.PORT }}</logical-port>
+        <mtu-size>{{ port.MTU }}</mtu-size>
+        <stats-collection>on</stats-collection>
+        <classifier-list>MGMT_VLAN-{{ data.VID }}</classifier-list>
+    </fp> 
+#}

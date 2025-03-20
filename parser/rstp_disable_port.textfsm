@@ -1,0 +1,8 @@
+Value Required port (\S+)
+
+# port disable port 1
+
+Start
+  ^rstp disable port ${port} -> Record
+
+EOF

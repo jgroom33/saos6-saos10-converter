@@ -1,0 +1,8 @@
+Value Required name (\S+)
+
+#isis instance disable isis-instance ISIS1
+
+Start
+  ^isis instance disable isis-instance ${name} -> Record
+
+EOF

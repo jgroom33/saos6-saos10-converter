@@ -1,0 +1,17 @@
+Value Required name (\S+)
+Value area (\S+)
+Value summary_route (\S+)
+Value ip_sum (\S+)
+Value wide_metric_sum (\S+)
+Value route_leak (\S+)
+Value ip_leak (\S+)
+Value wide_metric_leak (\S+)
+
+
+
+#isis instance add isis-instance ISIS1 area 49.0000
+
+Start
+  ^isis instance add isis-instance ${name}(?=.* area ${area})?(?=.* summary-route ${summary_route}(?=.* ip ${ip_sum})?(?=.* wide-metric ${wide_metric_sum})?)?(?=.* route-leak ${route_leak}(?=.* ip ${ip_leak})?(?=.* wide-metric ${wide_metric_leak})?)?-> Record
+
+EOF

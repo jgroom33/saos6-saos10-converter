@@ -1,0 +1,19 @@
+traffic-profiling set meter-provisioning pir
+vlan rename vlan 1000 name xVC123
+vlan add vlan 1000 port 2
+virtual-circuit ethernet create vc xVC123 vlan 1000
+virtual-switch ethernet create vs xVC123
+virtual-switch ethernet set vs xVC123 vc xVC123
+virtual-circuit ethernet set port 1 vlan-ethertype 8100 vlan-ethertype-policy all
+traffic-profiling set port 1 mode advanced
+virtual-switch l2-cft enable vs xVC123
+port set port 1 acceptable-frame-type all
+virtual-switch ethernet add vs xVC123 port 1 
+port set port 1 untagged-data-vs xVC123 untagged-ctrl-vs xVC123
+virtual-switch l2-cft set vs xVC123 priority 3l2-cft set port 1 profile EPL1-L
+port set port 1 resolved-cos-policy l3-dscp-cos
+port set port 1 fixed-rcos 0 resolved-cos-map Mcos4
+traffic-profiling standard-profile create port 1 name xVC123 cir 50400 cbs 625 pir 50400 ebs 0 child-mode vlan-cos statistics on vs xVC123
+traffic-profiling standard-profile create port 1 name xVC123-R cir 30000 pir 30000 cbs 375 ebs 0 dscp 40-47 statistics on parent xVC123
+traffic-profiling standard-profile create port 1 name xVC123-I cir 20000 pir 50000 cbs 250 ebs 375 dscp 32-39,48-63 statistics on parent xVC123
+

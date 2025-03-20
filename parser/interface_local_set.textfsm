@@ -1,0 +1,10 @@
+Value vlan (\S+)
+Value ip (\S+)
+Value cidr (\S+)
+
+# interface local set ip 10.111.40.155/24
+
+Start
+  ^interface local set(?=.*vlan ${vlan})?(?=.*ip ${ip}\/${cidr})? -> Record
+
+EOF

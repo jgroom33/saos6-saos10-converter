@@ -1,0 +1,50 @@
+[
+{% for item in virtual_switch_ethernet_add %}
+  {% if item.vlan != "" %}
+  {
+    "classifier": {
+      "name": "CLASSIFIER_UNI_{{ item.vs }}-{{ item.vlan }}",
+      "filter-entry": [
+        {
+          "filter-parameter": "vtag-stack",
+          "vtags": [
+            {
+              "tag": "1",
+              "vlan-id": "{{ item.vlan }}"
+            }
+          ]
+        }
+      ]
+    }
+  }{% if not loop.last %},{% endif %}
+  {% else %}
+  {
+    "classifier": {
+      "name": "CLASSIFIER_UNI_{{ item.vs }}-ALL_VIDS",
+      "filter-entry": [
+        {
+          "filter-parameter": "vtag-stack",
+          "vtags": [
+            {
+              "tag": "1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "classifier": {
+      "name": "CLASSIFIER_UNI_{{ item.vs }}-UNTAGGED",
+      "filter-entry": [
+        {
+          "filter-parameter": "vtag-stack",
+          "untagged-exclude-priority-tagged": "true",
+          "l2cp-exclude-priority-tagged": "true"
+        }
+      ]
+    }
+  }{% if not loop.last %},{% endif %}
+  {% endif %}
+{% endfor %}
+]

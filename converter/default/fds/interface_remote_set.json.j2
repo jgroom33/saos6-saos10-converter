@@ -1,0 +1,9 @@
+[
+{% for item in interface_remote_set %}
+  {
+    "fd": {
+      "name": "fd_remote_from_vlan_{{ item.vlan }}"
+    }
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]

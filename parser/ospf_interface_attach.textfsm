@@ -1,0 +1,10 @@
+Value Required name (\S+)
+Value ospf_instance (\S+)
+Value area (\S+)
+
+#ospf interface attach ip-interface NS4 ospf-instance ospf2 area <ipadress>
+
+Start
+  ^ospf interface attach ip-interface ${name}(?=.* area ${area})?(?=.* ospf-instance ${ospf_instance})? -> Record
+
+EOF

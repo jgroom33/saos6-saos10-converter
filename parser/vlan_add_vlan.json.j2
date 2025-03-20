@@ -1,0 +1,6 @@
+[
+{% for item in data %}
+{ "vlan": {{ item.vlan | hyphen_range_to_list }},
+  "port": "{{ item.port }}" } {% if not loop.last %},{% endif %}
+{% endfor %}
+]

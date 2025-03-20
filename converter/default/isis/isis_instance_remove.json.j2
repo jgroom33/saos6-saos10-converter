@@ -1,0 +1,19 @@
+[
+{% if isis_instance_remove|length > 0 %}
+  {
+    "instance": [
+  {% for item in isis_instance_remove %}
+    {
+      {% if item.level != "" %}
+        "no":"level-type",
+      {% endif %}
+      {% if item.area != "" %}
+        "no":"net",
+      {% endif %}
+      "name": "{{ item.name }}"
+    }{% if not loop.last %},{% endif %}
+  {% endfor %}
+    ]
+  }
+{% endif %}
+]

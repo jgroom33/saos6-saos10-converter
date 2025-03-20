@@ -1,0 +1,8 @@
+Value Required name (\S+)
+
+#isis interface detach ip-interface NS4 
+
+Start
+  ^isis interface detach ip-interface ${name} -> Record
+
+EOF

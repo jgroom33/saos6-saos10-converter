@@ -1,0 +1,12 @@
+Value Required vc (\S+)
+Value vlan (\S+)
+Value l2_transform (\S+)
+Value vid (\S+)
+
+# virtual-circuit ethernet create vc vc_EPL vlan 200
+# virtual-circuit ethernet create vc vc_EVPL vlan 300
+
+Start
+  ^virtual-circuit ethernet create vc ${vc} vlan ${vlan}(?: vid ${vid})? -> Record
+
+EOF

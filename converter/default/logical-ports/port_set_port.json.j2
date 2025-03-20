@@ -1,0 +1,41 @@
+[
+{% for item in port_set_port %}
+{
+  "logical-port": {
+    "name": "{{ item.port }}",
+    {% if item.max_frame_size != "" %}
+    "mtu": "{{ item.max_frame_size }}",
+    {% endif %}
+    "admin-state": "enable"
+  }
+}{% if not loop.last %},{% endif %}
+{% endfor %}
+]
+{# 
+<interface>
+    <name>{{ interface.name }}</name>
+    <config>
+        <name>{{ interface.name }}</name>
+        <mtu>1500</mtu>
+        <admin-status xmlns="http://ciena.com/ns/yang/ciena-openconfig-interfaces">true</admin-status>
+        <type xmlns="http://ciena.com/ns/yang/ciena-openconfig-interfaces">{{ interface.type }}</type>
+        <underlay-binding xmlns="http://ciena.com/ns/yang/ciena-underlay-binding">
+            <config>
+                <fd>VLAN{{ interface.vlan }}</fd>
+            </config>
+        </underlay-binding>
+        <vrfName xmlns="http://ciena.com/ns/yang/ciena-openconfig-interfaces">default</vrfName>
+    </config>
+    <ipv4 xmlns="http://ciena.com/ns/yang/ciena-openconfig-if-ip">
+        <addresses>
+            <address>
+                <ip>{{ interface.ip }}</ip>
+                <config>
+                    <ip>{{ interface.ip }}</ip>
+                    <prefix-length>32</prefix-length>
+                </config>
+            </address>
+        </addresses>
+    </ipv4>
+</interface> 
+#}

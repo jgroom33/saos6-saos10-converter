@@ -1,0 +1,13 @@
+Value Required name (\S+)
+Value rfc (\S+)
+Value router_id (\S+)
+Value spf (\S+)
+
+
+#ospf instance unset ospf-instance foo rfc-1583-compatible on router-id bar spf-delay-interval 10000
+
+Start
+  ^#ospf instance unset ospf-instance ${name}(?=.* rfc-1583-compatible ${rfc})?(?=.* router-id ${router_id})?(?=.* spf-delay-interval ${spf})?-> Record
+
+EOF
+

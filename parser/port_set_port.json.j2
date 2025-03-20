@@ -1,0 +1,2 @@
+{# This uses a custom filter to merge matching rows by key #}
+{{ data | merge_table_by_key("port") | tojson }}

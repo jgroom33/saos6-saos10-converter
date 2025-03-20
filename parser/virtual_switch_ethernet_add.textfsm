@@ -1,0 +1,17 @@
+Value Required vs (\S+)
+Value encap_fixed_dot1dpri (\S+)
+Value port (\S+)
+Value vlan (\S+)
+
+# virtual-switch ethernet create vs vs_EPL encap-fixed-dot1dpri 5 vc vc_EPL description "EPL Service"
+# virtual-switch ethernet add vs vs_EPL port 1 encap-cos-policy fixed encap-fixed-dot1dpri 5
+#
+# virtual-switch ethernet create vs vs_EVPL vc_EVPL description "EVPL Service"
+# virtual-switch ethernet add vs vs_EVPL port 2 vlan 10
+# virtual-switch ethernet add vs vs_EVPL port 2 vlan 20 encap-cos-policy fixed encap-fixed-dot1dpri 2
+# virtual-switch ethernet add vs vs_EVPL port 2 vlan 30 encap-cos-policy fixed encap-fixed-dot1dpri 3
+
+Start
+  ^virtual-switch ethernet add vs ${vs}(?=.* port ${port})?(?=.* vlan ${vlan})?(?=.* encap-fixed-dot1dpri ${encap_fixed_dot1dpri})? -> Record
+
+EOF

@@ -1,0 +1,8 @@
+Value Required name (\S+)
+
+#ospf instance delete ospf-instance foo
+
+Start
+  ^#ospf instance delete ospf-instance ${name}-> Record
+
+EOF

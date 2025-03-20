@@ -1,0 +1,9 @@
+Value Required name (\S+)
+
+#
+#bfd profile delete profile 10msActive
+
+Start
+  ^bfd profile delete profile ${name}? -> Record
+
+EOF

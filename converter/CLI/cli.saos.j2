@@ -1,0 +1,7 @@
+{% for calssifier in classifiers %}
+classifiers classifier create CLASSIFIER_NNI_{{ classifier['filter-entry'][0]['vtags'][0]['vlan-id'] }} vtag-stack 1 vlan-id {{ classifier['filter-entry'][0]['vtags'][0]['vlan-id'] }}
+{% endfor %}
+
+{% for item in virtual_switch_ethernet_create %}
+fds fd create fd FD_{{ item.vs }} mode {{ options.fd_mode }} description " {{ item.description }}"
+{% endfor %}

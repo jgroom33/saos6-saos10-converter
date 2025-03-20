@@ -1,4 +1,7 @@
+# Ignore created files from the execution
+app/assets/
 output/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

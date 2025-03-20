@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import json
 import re
 import os
@@ -253,21 +256,20 @@ def json_2_saos(input):
 if __name__ == "__main__":
     # Run local conversion and tests
 
-    def get_files_by_extension_in_directory(directory, extension="saos"):
+    def get_files_by_extension_in_directory(directory):
         """
-        Get a list of files with the specified extension in the given directory.
+        Get a list of all files in the given directory.
 
         Args:
             directory (str): The directory to search for files.
-            extension (str): The file extension to filter by.
 
         Returns:
-            list: A list of file names with the specified extension.
+            list: A list of file names.
         """
         return [
             f
             for f in os.listdir(directory)
-            if os.path.isfile(os.path.join(directory, f)) and f.endswith(extension)
+            if os.path.isfile(os.path.join(directory, f))
         ]
 
     def write_file(data, destination):

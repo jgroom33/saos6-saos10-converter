@@ -11,7 +11,7 @@
 
 3. Run the conversion script:
     ```sh
-    python index.py
+    ./index.py   # or python index.py
     ```
 
 ## Output
